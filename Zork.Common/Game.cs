@@ -55,11 +55,12 @@ namespace Zork.Common
         private static void Reward( Game game, CommandContext commandContext)
         {
             game.Player.Score++;
+            game.Output.WriteLine("You have bee rewarded 1 point!");
         }
 
         private static void Score( Game game, CommandContext commandContext)
         {
-            game.Output.WriteLine($"You score would be{game.Player.Score}, in {game.Player.Moves} move(s).");
+            game.Output.WriteLine($"You score would be {game.Player.Score}, in {game.Player.Moves} move(s).");
         }
 
         public static Game LoadFromFile(string filename, IOutputService output, IInputService input)
@@ -74,8 +75,8 @@ namespace Zork.Common
             game.Player = game.World.SpawnPlayer();
             game.IsRunning = true;
             game.Input.InputReceived += game.InputReceived;
-            output.WriteLine("Welcome to Zork");
-            game.CommandManager.PerformCommand(game, "LOOK");
+            //output.WriteLine("Welcome to Zork");
+            //game.CommandManager.PerformCommand(game, "LOOK");
 
             return game;
         }

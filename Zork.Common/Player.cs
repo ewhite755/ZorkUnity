@@ -8,10 +8,21 @@ namespace Zork.Common
     {
 
         public event EventHandler<int> ScoreChanged;
+        public event EventHandler<int> Moved;
 
         public World World { get; }
 
         public int Moves { get; set; }
+
+        public int amtMoved
+        {
+            get => mMoves;
+            set
+            {
+                mMoves = value;
+                Moved?.Invoke(this, mMoves);
+            }
+        }
 
         public int Score
         {
@@ -19,6 +30,7 @@ namespace Zork.Common
             set
             {
                 mScore = value;
+                ScoreChanged?.Invoke(this, mScore);
             }
         }
 
@@ -50,10 +62,13 @@ namespace Zork.Common
             if (isValidMove)
             {
                 Location = destination;
+                amtMoved++;
             }
 
             return isValidMove;
         }
+
         private int mScore;
+        private int mMoves;
     }
 }

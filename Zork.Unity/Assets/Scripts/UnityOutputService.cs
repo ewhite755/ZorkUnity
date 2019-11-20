@@ -14,6 +14,11 @@ public class UnityOutputService : MonoBehaviour, IOutputService
     [SerializeField]
     private int MaxTextLines = 60;
 
+    public UnityOutputService()
+    {
+        mTextLines = new List<GameObject>();
+    }
+
     public void Clear()
     {
         throw new System.NotImplementedException();
